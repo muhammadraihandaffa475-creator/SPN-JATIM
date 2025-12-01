@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPD 2026 - SPN POLDA JATIM</title>
+    <meta name="description" content="Rencana Pembangunan Daerah 2026 - Sistem Pengadaan Barang dan Jasa POLDA JATIM">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚔</text></svg>">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <nav class="admin-sidebar">
+            <div class="sidebar-header">
+                <div class="logo-section">
+                    <img src="https://yt3.ggpht.com/a/AATXAJwDikBj_PcvGKe5caluqknHoXgqXk7I5vY1CqY9=s200-c-k-c0xffffffff-no-rj-mo" alt="Logo SPN" class="sidebar-logo">
+                    <h3>SPN POLDA JATIM</h3>
+                </div>
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li class="menu-item">
+                    <a href="menu.html">
+                        <i class="fa-solid fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="admin.html">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item active">
+                    <a href="rpd-2026.html">
+                        <i class="fa-solid fa-map-marked-alt"></i>
+                        <span>RPD 2026</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="lra-2026.html">
+                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                        <span>LRA 2026</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="eperwabkeu.html">
+                        <i class="fa-solid fa-coins"></i>
+                        <span>E-PERWABKEU</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="spreadsheet.html">
+                        <i class="fa-solid fa-file-spreadsheet"></i>
+                        <span>Google Spreadsheet</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="spreadsheet.html">
+                        <i class="fa-solid fa-file-spreadsheet"></i>
+                        <span>Spreadsheet</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name">User RPD</span>
+                        <span class="user-role">Viewer</span>
+                    </div>
+                </div>
+                <button class="logout-btn" onclick="window.location.href='menu.html'">
+                    <i class="fa-solid fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="header-left">
+                    <button class="sidebar-toggle-btn" id="sidebarToggleBtn">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div class="breadcrumb">
+                        <span class="breadcrumb-item">Dashboard</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                        <span class="breadcrumb-item active">RPD 2026</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="header-date">
+                        <i class="fa-solid fa-calendar"></i>
+                        <span id="currentDate"></span>
+                    </div>
+                    <div class="header-actions">
+                        <button class="header-action-btn theme-toggle" id="theme-toggle">
+                            <i class="fa-solid fa-moon"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <section class="dashboard-content">
+                <!-- Welcome Section -->
+                <section class="welcome-section">
+                    <div class="welcome-content">
+                        <h1>Rencana Pembangunan Daerah 2026</h1>
+                        <p>Perencanaan strategis pembangunan daerah untuk tahun 2026</p>
+                    </div>
+                    <div class="welcome-stats">
+                        <div class="welcome-stat">
+                            <i class="fa-solid fa-calendar-day"></i>
+                            <span>Tahun: 2026</span>
+                        </div>
+                        <div class="welcome-stat">
+                            <i class="fa-solid fa-clock"></i>
+                            <span>Status: Dalam Perencanaan</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- RPD Content Sections -->
+                <section class="rpd-overview">
+                    <div class="overview-card">
+                        <div class="overview-header">
+                            <h3>Visi & Misi Pembangunan 2026</h3>
+                        </div>
+                        <div class="overview-content">
+                            <div class="vision-mission">
+                                <div class="vision">
+                                    <h4><i class="fa-solid fa-eye"></i> Visi</h4>
+                                    <p>Terwujudnya POLDA JATIM yang profesional, modern, dan terpercaya dalam pelayanan masyarakat serta penegakan hukum</p>
+                                </div>
+                                <div class="mission">
+                                    <h4><i class="fa-solid fa-bullseye"></i> Misi</h4>
+                                    <ul>
+                                        <li>Meningkatkan profesionalisme anggota POLDA JATIM</li>
+                                        <li>Modernisasi sistem dan teknologi kepolisian</li>
+                                        <li>Memperkuat pelayanan masyarakat</li>
+                                        <li>Mengoptimalkan penegakan hukum</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="rpd-programs">
+                    <div class="overview-card">
+                        <div class="overview-header">
+                            <h3>Program Prioritas 2026</h3>
+                        </div>
+                        <div class="programs-grid">
+                            <div class="program-card">
+                                <div class="program-icon">
+                                    <i class="fa-solid fa-shield-alt"></i>
+                                </div>
+                                <h4>Modernisasi Sistem Keamanan</h4>
+                                <p>Pengembangan sistem keamanan terintegrasi dengan teknologi digital</p>
+                                <div class="program-status">
+                                    <span class="status-badge info">Dalam Perencanaan</span>
+                                </div>
+                            </div>
+
+                            <div class="program-card">
+                                <div class="program-icon">
+                                    <i class="fa-solid fa-users"></i>
+                                </div>
+                                <h4>Peningkatan SDM</h4>
+                                <p>Program pengembangan kompetensi dan kualitas sumber daya manusia</p>
+                                <div class="program-status">
+                                    <span class="status-badge info">Dalam Perencanaan</span>
+                                </div>
+                            </div>
+
+                            <div class="program-card">
+                                <div class="program-icon">
+                                    <i class="fa-solid fa-building"></i>
+                                </div>
+                                <h4>Infrastruktur Gedung</h4>
+                                <p>Pembangunan dan renovasi gedung kantor serta fasilitas pendukung</p>
+                                <div class="program-status">
+                                    <span class="status-badge info">Dalam Perencanaan</span>
+                                </div>
+                            </div>
+
+                            <div class="program-card">
+                                <div class="program-icon">
+                                    <i class="fa-solid fa-car"></i>
+                                </div>
+                                <h4>Modernisasi Armada</h4>
+                                <p>Pengadaan kendaraan operasional dan peralatan modern</p>
+                                <div class="program-status">
+                                    <span class="status-badge info">Dalam Perencanaan</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- RPD Timeline -->
+                <section class="rpd-timeline">
+                    <div class="overview-card">
+                        <div class="overview-header">
+                            <h3>Timeline RPD 2026</h3>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <h4>Q1 2026</h4>
+                                    <p>Penyusunan rencana awal dan identifikasi kebutuhan</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <h4>Q2 2026</h4>
+                                    <p>Penganggaran dan perencanaan detail program</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <h4>Q3 2026</h4>
+                                    <p>Implementasi program prioritas</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <h4>Q4 2026</h4>
+                                    <p>Monitoring dan evaluasi pencapaian</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Update current date
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentDateElement = document.getElementById('currentDate');
+            if (currentDateElement) {
+                const now = new Date();
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                currentDateElement.textContent = now.toLocaleDateString('id-ID', options);
+            }
+
+            // Sidebar toggle functionality
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
+            const adminContainer = document.querySelector('.admin-container');
+
+            function toggleSidebar() {
+                adminContainer.classList.toggle('sidebar-collapsed');
+            }
+
+            if (sidebarToggle) sidebarToggle.addEventListener('click', toggleSidebar);
+            if (sidebarToggleBtn) sidebarToggleBtn.addEventListener('click', toggleSidebar);
+
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            const html = document.documentElement;
+
+            // Load saved theme
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                html.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            }
+
+            themeToggle.addEventListener('click', function() {
+                const currentTheme = html.getAttribute('data-theme');
+                if (currentTheme === 'dark') {
+                    html.removeAttribute('data-theme');
+                    localStorage.setItem('theme', 'light');
+                    themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+                } else {
+                    html.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                    themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

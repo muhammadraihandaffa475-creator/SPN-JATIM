@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@SPN POLDA JATIM - Menu Navigasi</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+        /* Enhanced Menu Page Styles */
+        .menu-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
+            flex: 1;
+        }
+
+        .profile-section {
+            flex: 0 0 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .menu-links-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .menu-links-list {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            max-width: 800px;
+        }
+
+        .menu-link-item {
+            flex: 0 0 auto;
+            width: calc(50% - 0.75rem);
+            min-width: 250px;
+        }
+
+        .menu-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+            50% { transform: translate(-50%, -50%) rotate(180deg); }
+        }
+
+        .menu-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .menu-theme-toggle {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .profile-section {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-avatar-container {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            margin: 0 auto;
+        }
+
+        .profile-avatar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-name {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 0 0.5rem 0;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, #ffffff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .profile-bio {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin: 0;
+            font-weight: 300;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-links-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .menu-links-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu-link-item {
+            animation: slideInUp 0.6s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .menu-link-item:nth-child(1) { animation-delay: 0.1s; }
+        .menu-link-item:nth-child(2) { animation-delay: 0.2s; }
+        .menu-link-item:nth-child(3) { animation-delay: 0.3s; }
+        .menu-link-item:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .menu-link-button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 1.5rem;
+            background: rgba(255, 255, 255, 0.95);
+            color: #1e293b;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-link-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .menu-link-button:hover::before {
+            left: 100%;
+        }
+
+        .menu-link-button:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .menu-link-button:active {
+            transform: translateY(-2px) scale(1.01);
+        }
+
+        .menu-link-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+        }
+
+        .menu-link-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .menu-link-button:hover .menu-link-icon {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-link-text {
+            flex: 1;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .menu-link-arrow {
+            color: #94a3b8;
+            font-size: 1.4rem;
+            font-weight: 300;
+            transition: all 0.3s ease;
+        }
+
+        .menu-link-button:hover .menu-link-arrow {
+            color: #667eea;
+            transform: translateX(4px);
+        }
+
+        .menu-footer {
+            text-align: center;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .menu-social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .menu-social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .menu-social-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px) scale(1.1);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-footer-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            font-weight: 300;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-footer-text strong {
+            color: white;
+            font-weight: 500;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .menu-links-list {
+                max-width: 600px;
+            }
+
+            .menu-link-item {
+                width: calc(50% - 0.75rem);
+                min-width: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .profile-section {
+                flex: none;
+                margin-bottom: 2rem;
+                padding: 1.5rem;
+            }
+
+            .menu-links-section {
+                flex: none;
+            }
+
+            .menu-links-list {
+                flex-direction: column;
+                gap: 1rem;
+                max-width: none;
+            }
+
+            .menu-link-item {
+                width: 100%;
+                min-width: unset;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-container {
+                padding: 1.5rem 1rem;
+            }
+
+            .profile-avatar {
+                width: 100px;
+                height: 100px;
+            }
+
+            .profile-name {
+                font-size: 1.5rem;
+            }
+
+            .profile-bio {
+                font-size: 1rem;
+            }
+
+            .menu-link-button {
+                padding: 1rem 1.25rem;
+                font-size: 1rem;
+            }
+
+            .menu-link-icon {
+                width: 44px;
+                height: 44px;
+                font-size: 1.2rem;
+            }
+
+            .menu-social-links {
+                gap: 1rem;
+            }
+
+            .menu-social-link {
+                width: 44px;
+                height: 44px;
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            .menu-link-button {
+                background: rgba(30, 41, 59, 0.95);
+                color: #f8fafc;
+                border-color: rgba(255, 255, 255, 0.1);
+            }
+
+            .menu-link-text {
+                color: #f8fafc;
+            }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            .menu-container::before,
+            .menu-link-item,
+            .menu-link-button,
+            .menu-link-button::before,
+            .menu-link-icon,
+            .menu-link-arrow,
+            .menu-social-link,
+            .menu-theme-toggle {
+                animation: none;
+                transition: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <header class="menu-header">
+            <button class="menu-theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </header>
+
+        <div class="main-content">
+            <section class="profile-section">
+                <div class="profile-avatar-container">
+                    <div class="profile-avatar">
+                        <img src="https://yt3.ggpht.com/a/AATXAJwDikBj_PcvGKe5caluqknHoXgqXk7I5vY1CqY9=s200-c-k-c0xffffffff-no-rj-mo" alt="Logo SPN POLDA JATIM" />
+                    </div>
+                </div>
+                <h1 class="profile-name">@SPN POLDA JATIM</h1>
+                <p class="profile-bio">Sistem Pengadaan Barang dan Jasa POLDA JATIM 2026</p>
+            </section>
+
+            <nav class="menu-links-section" role="navigation" aria-label="Menu navigasi utama">
+                <ul class="menu-links-list" role="list">
+                    <li class="menu-link-item">
+                        <a href="rpd-2026.html" class="menu-link-button" role="listitem" aria-label="RPD 2026">
+                            <div class="menu-link-content">
+                                <div class="menu-link-icon">
+                                    <i class="fas fa-chart-line" aria-hidden="true"></i>
+                                </div>
+                                <span class="menu-link-text">RPD 2026</span>
+                            </div>
+                            <i class="fas fa-chevron-right menu-link-arrow" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="menu-link-item">
+                        <a href="lra-2026.html" class="menu-link-button" role="listitem" aria-label="LRA 2026">
+                            <div class="menu-link-content">
+                                <div class="menu-link-icon">
+                                    <i class="fas fa-file-invoice-dollar" aria-hidden="true"></i>
+                                </div>
+                                <span class="menu-link-text">LRA 2026</span>
+                            </div>
+                            <i class="fas fa-chevron-right menu-link-arrow" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="menu-link-item">
+                        <a href="eperwabkeu.html" class="menu-link-button" role="listitem" aria-label="E-PERWABKEU">
+                            <div class="menu-link-content">
+                                <div class="menu-link-icon">
+                                    <i class="fas fa-coins" aria-hidden="true"></i>
+                                </div>
+                                <span class="menu-link-text">E-PERWABKEU</span>
+                            </div>
+                            <i class="fas fa-chevron-right menu-link-arrow" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="menu-link-item">
+                        <a href="admin.html" class="menu-link-button" role="listitem" aria-label="Admin Dashboard">
+                            <div class="menu-link-content">
+                                <div class="menu-link-icon">
+                                    <i class="fas fa-cog" aria-hidden="true"></i>
+                                </div>
+                                <span class="menu-link-text">Admin Dashboard</span>
+                            </div>
+                            <i class="fas fa-chevron-right menu-link-arrow" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <footer class="menu-footer">
+            <div class="menu-social-links">
+                <a href="#" class="menu-social-link" aria-label="Facebook">
+                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                </a>
+                <a href="#" class="menu-social-link" aria-label="Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+                <a href="https://www.instagram.com/spn.poldajatim?igsh=cG01ZW9odnkwNTl0" target="_blank" class="menu-social-link" aria-label="Instagram">
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                </a>
+                <a href="#" class="menu-social-link" aria-label="YouTube">
+                    <i class="fab fa-youtube" aria-hidden="true"></i>
+                </a>
+            </div>
+            <p class="menu-footer-text">
+                © 2026 <strong>SPN POLDA JATIM</strong>. All rights reserved.
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.querySelector('.menu-theme-toggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            body.setAttribute('data-theme', body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+            const icon = themeToggle.querySelector('i');
+            icon.className = body.getAttribute('data-theme') === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe menu link items
+        document.querySelectorAll('.menu-link-item').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Add loading animation to links
+        document.querySelectorAll('.menu-link-button').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const icon = this.querySelector('.menu-link-icon');
+                icon.style.transform = 'scale(0.9) rotate(360deg)';
+                setTimeout(() => {
+                    icon.style.transform = '';
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>

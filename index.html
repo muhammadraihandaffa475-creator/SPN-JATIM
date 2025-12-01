@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PBJ SPN POLDA JATIM 2026 - Sistem Pengadaan Barang dan Jasa</title>
+    <meta name="description" content="Sistem Pengadaan Barang dan Jasa POLDA JATIM - Platform modern untuk manajemen pengadaan dan dokumentasi">
+    <meta name="keywords" content="SPN, POLDA JATIM, pengadaan, barang, jasa, procurement">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚔</text></svg>">
+    <style>
+        /* Index Page Styles */
+        :root {
+            --color-primary: #6366f1;
+            --color-secondary: #10b981;
+            --color-bg-primary: #ffffff;
+            --color-bg-secondary: #f8fafc;
+            --color-text-primary: #111827;
+            --color-text-secondary: #374151;
+        }
+
+[data-theme="dark"] {
+    --color-bg-primary: #0f172a;
+    --color-bg-secondary: #1e293b;
+    --color-text-primary: #f8fafc;
+    --color-text-secondary: #cbd5e1;
+}
+
+body {
+    background-image: url("https://i.ytimg.com/vi/IwWLKedQanE/maxresdefault.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--color-bg-primary);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .hero-section {
+            padding: 120px 0 80px;
+            background: rgba(248, 250, 252, 0.8);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--color-text-primary);
+            line-height: 1.1;
+            margin: 0 0 1.5rem 0;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            margin: 0 0 1.5rem 0;
+        }
+
+        .hero-subtitle .highlight {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-primary), #4f46e5);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .feature-card {
+            background: var(--color-bg-primary);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #a5b4fc, #6ee7b7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-primary);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--color-bg-primary);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid rgba(0,0,0,0.1);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            background: var(--color-bg-primary);
+            color: var(--color-text-primary);
+        }
+
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <a href="https://www.instagram.com/spn.poldajatim?igsh=cG01ZW9odnkwNTl0" target="_blank" aria-label="Instagram SPN POLDA JATIM">
+                        <img src="https://yt3.ggpht.com/a/AATXAJwDikBj_PcvGKe5caluqknHoXgqXk7I5vY1CqY9=s200-c-k-c0xffffffff-no-rj-mo" alt="Logo PBJ SPN POLDA JATIM 2026" class="nav-logo">
+                    </a>
+                    <div class="brand-text">
+                        <h1>PBJ SPN POLDA JATIM 2026</h1>
+                        <span>Sistem Pengadaan Barang dan Jasa</span>
+                    </div>
+                </div>
+
+                <div class="nav-actions">
+                    <button class="btn-primary" onclick="showLoginModal()">
+                        <i class="fa-solid fa-sign-in-alt"></i>
+                        Masuk
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Platform Modern untuk
+                    <span class="highlight">Pengadaan Barang & Jasa</span>
+                </h1>
+                <h2 class="hero-subtitle">
+                    PBJ SPN POLDA JATIM 2026
+                </h2>
+
+                <p class="hero-description">
+                    Kelola proses pengadaan dengan efisien, transparan, dan terintegrasi.
+                    Platform digital terdepan untuk mendukung operasional POLDA JATIM.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="menu.html" class="btn-primary">
+                        <i class="fa-solid fa-rocket"></i>
+                        Mulai Sekarang
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div style="width: 300px; height: 200px; background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); border-radius: 16px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section style="padding: 80px 0; background: rgba(255, 255, 255, 0.8);">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <h2 style="font-size: 2.5rem; font-weight: 700; color: var(--color-text-primary); margin: 0 0 1rem 0;">Fitur Unggulan</h2>
+                <p style="font-size: 1.1rem; color: #6b7280;">Teknologi terdepan untuk mendukung pengadaan yang efisien dan transparan</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-shopping-cart"></i>
+                    </div>
+                    <h3>PBJ SPN POLDA JATIM 2026</h3>
+                    <p>Platform digital terdepan untuk mendukung operasional POLDA JATIM dengan efisien dan transparan</p>
+                    <a href="menu.html" style="color: var(--color-primary); text-decoration: none; font-weight: 600;">Akses Sistem →</a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3>RPD 2026</h3>
+                    <p>Rencana Pembangunan Daerah 2026 untuk perencanaan strategis pembangunan</p>
+                    <a href="admin.html" style="color: var(--color-primary); text-decoration: none; font-weight: 600;">Lihat Dashboard →</a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>LRA 2026</h3>
+                    <p>Laporan Realisasi Anggaran 2026 untuk monitoring dan evaluasi keuangan</p>
+                    <a href="#" style="color: var(--color-primary); text-decoration: none; font-weight: 600;">Coming Soon →</a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-coins"></i>
+                    </div>
+                    <h3>E-PERWABKEU</h3>
+                    <p>Sistem Elektronik Perbendaharaan dan Kewenangan Keuangan untuk pengelolaan keuangan digital</p>
+                    <a href="eperwabkeu.html" style="color: var(--color-primary); text-decoration: none; font-weight: 600;">Kelola Keuangan →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2 style="color: var(--color-primary); margin: 0;">Masuk ke Sistem SPN</h2>
+            </div>
+            <form class="login-form">
+                <input type="text" placeholder="Username" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit" class="btn-primary" style="width: 100%;">Masuk</button>
+            </form>
+            <div style="text-align: center; margin-top: 1rem;">
+                <p style="color: var(--color-text-secondary); font-size: 0.9rem;">Belum memiliki akun? <a href="#" onclick="showRegisterModal()" style="color: var(--color-primary);">Daftar</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showLoginModal() {
+            document.getElementById('login-modal').style.display = 'flex';
+        }
+
+        function showRegisterModal() {
+            alert('Fitur register akan segera hadir!');
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('login-modal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

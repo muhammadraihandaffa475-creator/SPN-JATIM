@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LRA 2026 - SPN POLDA JATIM</title>
+    <meta name="description" content="Laporan Realisasi Anggaran 2026 - Sistem Pengadaan Barang dan Jasa POLDA JATIM">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚔</text></svg>">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <nav class="admin-sidebar">
+            <div class="sidebar-header">
+                <div class="logo-section">
+                    <img src="https://yt3.ggpht.com/a/AATXAJwDikBj_PcvGKe5caluqknHoXgqXk7I5vY1CqY9=s200-c-k-c0xffffffff-no-rj-mo" alt="Logo SPN" class="sidebar-logo">
+                    <h3>SPN POLDA JATIM</h3>
+                </div>
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li class="menu-item">
+                    <a href="menu.html">
+                        <i class="fa-solid fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="admin.html">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="rpd-2026.html">
+                        <i class="fa-solid fa-map-marked-alt"></i>
+                        <span>RPD 2026</span>
+                    </a>
+                </li>
+                <li class="menu-item active">
+                    <a href="lra-2026.html">
+                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                        <span>LRA 2026</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="eperwabkeu.html">
+                        <i class="fa-solid fa-coins"></i>
+                        <span>E-PERWABKEU</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="spreadsheet.html">
+                        <i class="fa-solid fa-file-spreadsheet"></i>
+                        <span>Google Spreadsheet</span>
+                    </a>
+                </li>
+
+            </ul>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name">User LRA</span>
+                        <span class="user-role">Viewer</span>
+                    </div>
+                </div>
+                <button class="logout-btn" onclick="window.location.href='menu.html'">
+                    <i class="fa-solid fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="header-left">
+                    <button class="sidebar-toggle-btn" id="sidebarToggleBtn">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div class="breadcrumb">
+                        <span class="breadcrumb-item">Dashboard</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                        <span class="breadcrumb-item active">LRA 2026</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="header-date">
+                        <i class="fa-solid fa-calendar"></i>
+                        <span id="currentDate"></span>
+                    </div>
+                    <div class="header-actions">
+                        <button class="header-action-btn theme-toggle" id="theme-toggle">
+                            <i class="fa-solid fa-moon"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <section class="dashboard-content">
+                <!-- Welcome Section -->
+                <section class="welcome-section">
+                    <div class="welcome-content">
+                        <h1>Laporan Realisasi Anggaran 2026</h1>
+                        <p>Monitoring dan evaluasi keuangan POLDA JATIM tahun 2026</p>
+                    </div>
+                    <div class="welcome-stats">
+                        <div class="welcome-stat">
+                            <i class="fa-solid fa-calendar-day"></i>
+                            <span>Periode: 2026</span>
+                        </div>
+                        <div class="welcome-stat">
+                            <i class="fa-solid fa-clock"></i>
+                            <span>Status: Dalam Monitoring</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- LRA Overview -->
+                <section class="lra-overview">
+                    <div class="stats-row">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-money-bill-wave"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="totalBudget">Rp 0</h3>
+                                <p>Total Anggaran</p>
+                                <span class="stat-change neutral">2026</span>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-check-circle"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="realizedBudget">Rp 0</h3>
+                                <p>Realisasi</p>
+                                <span class="stat-change positive" id="realizationPercent">0%</span>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="remainingBudget">Rp 0</h3>
+                                <p>Sisa Anggaran</p>
+                                <span class="stat-change neutral" id="remainingPercent">100%</span>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="efficiencyRate">0%</h3>
+                                <p>Efisiensi</p>
+                                <span class="stat-change positive">Target: 95%</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Budget Breakdown -->
+                <section class="budget-breakdown">
+                    <div class="overview-card">
+                        <div class="overview-header">
+                            <h3>Rincian Anggaran per Kategori</h3>
+                        </div>
+                        <div class="budget-categories">
+                            <div class="budget-category">
+                                <div class="category-header">
+                                    <h4><i class="fa-solid fa-building"></i> Belanja Pegawai</h4>
+                                    <span class="category-amount">Rp 0</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                                <div class="category-details">
+                                    <span>Realisasi: Rp 0 (0%)</span>
+                                </div>
+                            </div>
+
+                            <div class="budget-category">
+                                <div class="category-header">
+                                    <h4><i class="fa-solid fa-tools"></i> Belanja Barang</h4>
+                                    <span class="category-amount">Rp 0</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                                <div class="category-details">
+                                    <span>Realisasi: Rp 0 (0%)</span>
+                                </div>
+                            </div>
+
+                            <div class="budget-category">
+                                <div class="category-header">
+                                    <h4><i class="fa-solid fa-handshake"></i> Belanja Modal</h4>
+                                    <span class="category-amount">Rp 0</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                                <div class="category-details">
+                                    <span>Realisasi: Rp 0 (0%)</span>
+                                </div>
+                            </div>
+
+                            <div class="budget-category">
+                                <div class="category-header">
+                                    <h4><i class="fa-solid fa-users"></i> Belanja Sosial</h4>
+                                    <span class="category-amount">Rp 0</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                                <div class="category-details">
+                                    <span>Realisasi: Rp 0 (0%)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Monthly Progress -->
+                <section class="monthly-progress">
+                    <div class="overview-card">
+                        <div class="overview-header">
+                            <h3>Progress Realisasi Bulanan</h3>
+                        </div>
+                        <div class="monthly-chart">
+                            <div class="months-grid">
+                                <div class="month-item">
+                                    <div class="month-name">Jan</div>
+                                    <div class="month-bar">
+                                        <div class="month-fill" style="height: 0%"></div>
+                                    </div>
+                                    <div class="month-value">0%</div>
+                                </div>
+                                <div class="month-item">
+                                    <div class="month-name">Feb</div>
+                                    <div class="month-bar">
+                                        <div class="month-fill" style="height: 0%"></div>
+                                    </div>
+                                    <div class="month-value">0%</div>
+                                </div>
+                                <div class="month-item">
+                                    <div class="month-name">Mar</div>
+                                    <div class="month-bar">
+                                        <div class="month-fill" style="height: 0%"></div>
+                                    </div>
+                                    <div class="month-value">0%</div>
+                                </div>
+                                <div class="month-item">
+                                    <div class="month-name">Apr</div>
+                                    <div class="month-bar">
+                                        <div class="month-fill" style="height: 0%"></div>
+                                    </div>
+                                    <div class="month-value">0%</div>
+                                </div>
+                                <div class="month-item">
+                                    <div class="month-name">Mei</div>
+                                    <div class="month-bar">
+                                        <div class="month-fill" style="height: 0%"></div>
+                                    </div>
+                                    <div class="month-value">0%</div>
+                                </div>
+                                <div class="month-item">
+                                    <div class="month-name">Jun</div>
+                                    <div class="month-bar">
+                                        <div class="month-fill" style="height: 0%"></div>
+                                    </div>
+                                    <div class="month-value">0%</div>
+                                </div>
+                                <div class="month-item">
+                                    <div class="month-name">Jul</div>
+                                    <div class="month-bar">
+                                        <div class="month-fill" style="height: 0%"></div>
+                                    </div>
+                                    <div class="month-value">0%</div>
+                                </div>
+                                <div class="month-item">
+                                    <div class="month-name">Ags</div>
+                                    <div class="month-bar">
+                                        <div class="month-fill" style="height: 0%"></div>
+                                    </div>
+                                    <div class="month-value">0%</div>
+                                </div>
+                                <div class="month-item">
+                                    <div class="month-name">Sep</div>
+                                    <div class="month-bar">
+                                        <div class="month-fill" style="height: 0%"></div>
+                                    </div>
+                                    <div class="month-value">0%</div>
+                                </div>
+                                <div class="month-item">
+                                    <div class="month-name">Okt</div>
+                                    <div class="month-bar">
+                                        <div class="month-fill" style="height: 0%"></div>
+                                    </div>
+                                    <div class="month-value">0%</div>
+                                </div>
+                                <div class="month-item">
+                                    <div class="month-name">Nov</div>
+                                    <div class="month-bar">
+                                        <div class="month-fill" style="height: 0%"></div>
+                                    </div>
+                                    <div class="month-value">0%</div>
+                                </div>
+                                <div class="month-item">
+                                    <div class="month-name">Des</div>
+                                    <div class="month-bar">
+                                        <div class="month-fill" style="height: 0%"></div>
+                                    </div>
+                                    <div class="month-value">0%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- LRA Reports Table -->
+                <section class="lra-reports">
+                    <div class="table-container">
+                        <div class="table-header">
+                            <h3>Laporan Realisasi Anggaran</h3>
+                            <div class="table-actions">
+                                <button class="btn-secondary">
+                                    <i class="fa-solid fa-download"></i>
+                                    Export PDF
+                                </button>
+                                <button class="btn-secondary">
+                                    <i class="fa-solid fa-file-excel"></i>
+                                    Export Excel
+                                </button>
+                            </div>
+                        </div>
+                        <div class="table-wrapper">
+                            <table class="styled-table">
+                                <thead>
+                                    <tr>
+                                        <th>Bulan</th>
+                                        <th>Anggaran</th>
+                                        <th>Realisasi</th>
+                                        <th>Persentase</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="lraTableBody">
+                                    <tr>
+                                        <td colspan="5" class="no-data">Data LRA akan dimuat...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Update current date
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentDateElement = document.getElementById('currentDate');
+            if (currentDateElement) {
+                const now = new Date();
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                currentDateElement.textContent = now.toLocaleDateString('id-ID', options);
+            }
+
+            // Load LRA data
+            loadLRAData();
+
+            // Sidebar toggle functionality
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
+            const adminContainer = document.querySelector('.admin-container');
+
+            function toggleSidebar() {
+                adminContainer.classList.toggle('sidebar-collapsed');
+            }
+
+            if (sidebarToggle) sidebarToggle.addEventListener('click', toggleSidebar);
+            if (sidebarToggleBtn) sidebarToggleBtn.addEventListener('click', toggleSidebar);
+
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            const html = document.documentElement;
+
+            // Load saved theme
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                html.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            }
+
+            themeToggle.addEventListener('click', function() {
+                const currentTheme = html.getAttribute('data-theme');
+                if (currentTheme === 'dark') {
+                    html.removeAttribute('data-theme');
+                    localStorage.setItem('theme', 'light');
+                    themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+                } else {
+                    html.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                    themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+                }
+            });
+        });
+
+        // Load LRA data
+        function loadLRAData() {
+            // Sample LRA data - in real implementation, this would come from API/database
+            const lraData = {
+                totalBudget: 150000000000, // 150 billion
+                realizedBudget: 45000000000, // 45 billion
+                months: [
+                    { name: 'Januari', budget: 12000000000, realized: 11000000000 },
+                    { name: 'Februari', budget: 12000000000, realized: 10500000000 },
+                    { name: 'Maret', budget: 13000000000, realized: 12500000000 },
+                    { name: 'April', budget: 12000000000, realized: 11000000000 },
+                    // Add more months as needed
+                ]
+            };
+
+            // Update stats
+            updateLRAStats(lraData);
+            updateLRATable(lraData.months);
+        }
+
+        function updateLRAStats(data) {
+            const totalBudget = data.totalBudget;
+            const realizedBudget = data.realizedBudget;
+            const remainingBudget = totalBudget - realizedBudget;
+            const realizationPercent = ((realizedBudget / totalBudget) * 100).toFixed(1);
+            const remainingPercent = ((remainingBudget / totalBudget) * 100).toFixed(1);
+            const efficiencyRate = '94.2'; // Sample efficiency rate
+
+            document.getElementById('totalBudget').textContent = 'Rp ' + formatCurrency(totalBudget);
+            document.getElementById('realizedBudget').textContent = 'Rp ' + formatCurrency(realizedBudget);
+            document.getElementById('remainingBudget').textContent = 'Rp ' + formatCurrency(remainingBudget);
+            document.getElementById('realizationPercent').textContent = realizationPercent + '%';
+            document.getElementById('remainingPercent').textContent = remainingPercent + '%';
+            document.getElementById('efficiencyRate').textContent = efficiencyRate + '%';
+        }
+
+        function updateLRATable(months) {
+            const tbody = document.getElementById('lraTableBody');
+            tbody.innerHTML = '';
+
+            months.forEach(month => {
+                const percent = ((month.realized / month.budget) * 100).toFixed(1);
+                const status = percent >= 90 ? 'success' : percent >= 75 ? 'warning' : 'error';
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${month.name}</td>
+                    <td>Rp ${formatCurrency(month.budget)}</td>
+                    <td>Rp ${formatCurrency(month.realized)}</td>
+                    <td>${percent}%</td>
+                    <td><span class="status-badge ${status}">${percent >= 90 ? 'Baik' : percent >= 75 ? 'Cukup' : 'Kurang'}</span></td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('id-ID').format(amount);
+        }
+    </script>
+</body>
+</html>

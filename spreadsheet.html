@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Spreadsheet Integration - SPN POLDA JATIM</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Load Google API client -->
+    <script async defer src="https://apis.google.com/js/api.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-icons">
+                <button class="icon-btn theme-toggle" aria-label="Toggle Dark Mode" id="theme-toggle">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button class="icon-btn" aria-label="Back" onclick="window.location.href='menu.html'">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <button class="icon-btn" aria-label="Settings">
+                    <i class="fa-solid fa-asterisk"></i>
+                </button>
+            </div>
+            <div class="profile-info">
+                <div class="logo-circle">
+                    <img src="https://yt3.ggpht.com/a/AATXAJwDikBj_PcvGKe5caluqknHoXgqXk7I5vY1CqY9=s900-c-k-c0xffffffff-no-rj-mo" alt="Logo Logistik Polda Jatim" class="logo">
+                </div>
+                <h1>Google Spreadsheet</h1>
+                <p>SPN POLDA JATIM - Upload Link Google Spreadsheet</p>
+            </div>
+        </header>
+
+        <main class="spreadsheet-section">
+            <!-- Upload Display Section -->
+            <div class="upload-display">
+                <div class="display-header">
+                    <i class="fa-solid fa-cloud-upload-alt"></i>
+                    <h2>Upload Area</h2>
+                    <p>Klik salah satu opsi upload di bawah ini</p>
+                </div>
+
+                <div class="upload-options">
+                    <div class="upload-option" onclick="showUploadPage('link')">
+                        <div class="option-icon">
+                            <i class="fa-solid fa-link"></i>
+                        </div>
+                        <div class="option-content">
+                            <h3>Upload Link Google Spreadsheet</h3>
+                            <p>Upload link spreadsheet yang sudah dibuat di Google Sheets</p>
+                            <span class="option-arrow">→</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Forms (Hidden by default) -->
+            <div id="upload-forms" class="upload-forms" style="display: none;">
+                <div class="form-navigation">
+                    <button class="back-btn" onclick="backToDisplay()">
+                        <i class="fa-solid fa-arrow-left"></i> Kembali
+                    </button>
+                    <h3 id="form-title">Upload Link Google Spreadsheet</h3>
+                </div>
+
+                <!-- Link Upload Form -->
+                <form id="spreadsheet-form-link" class="spreadsheet-form">
+                    <div class="form-group">
+                        <label for="spreadsheet-link">Link Google Spreadsheet</label>
+                        <input type="url" id="spreadsheet-link" name="spreadsheet-link" placeholder="https://docs.google.com/spreadsheets/d/..." required>
+                        <small class="form-help">Pastikan link dapat diakses secara publik atau dibagikan</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="spreadsheet-name">Nama Spreadsheet</label>
+                        <input type="text" id="spreadsheet-name" name="spreadsheet-name" placeholder="Masukkan nama spreadsheet" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="spreadsheet-description">Deskripsi (Opsional)</label>
+                        <textarea id="spreadsheet-description" name="spreadsheet-description" placeholder="Deskripsi singkat tentang spreadsheet ini" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="clearForm()">Bersihkan</button>
+                        <button type="submit" class="btn-primary">Upload Link</button>
+                    </div>
+                </form>
+
+                <!-- File Upload Form -->
+                <form id="spreadsheet-form-file" class="spreadsheet-form" style="display: none;">
+                    <div class="form-group">
+                        <label for="spreadsheet-file">Pilih File CSV</label>
+                        <input type="file" id="spreadsheet-file" name="spreadsheet-file" accept=".csv" required>
+                        <small class="form-help">Format yang didukung: .csv (Maksimal 10MB)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="file-name">Nama File</label>
+                        <input type="text" id="file-name" name="file-name" placeholder="Masukkan nama file" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="file-description">Deskripsi (Opsional)</label>
+                        <textarea id="file-description" name="file-description" placeholder="Deskripsi singkat tentang file ini" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="clearFileForm()">Bersihkan</button>
+                        <button type="submit" class="btn-primary">Upload File</button>
+                    </div>
+                </form>
+
+                <div id="upload-status" class="upload-status" style="display: none;">
+                    <div class="status-message">
+                        <i class="fa-solid fa-check-circle"></i>
+                        <h3>Upload Berhasil!</h3>
+                        <p>Data telah berhasil disimpan ke sistem.</p>
+                        <button class="btn-primary" onclick="resetForm()">Upload Lagi</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recent-uploads">
+                <h2>Spreadsheet Terbaru</h2>
+                <div class="uploads-list">
+                    <div class="upload-item">
+                        <div class="upload-icon">
+                            <i class="fa-solid fa-file-spreadsheet"></i>
+                        </div>
+                        <div class="upload-info">
+                            <h4>Data PBJ 2024</h4>
+                            <p>Link: https://docs.google.com/spreadsheets/d/abc123...</p>
+                            <span class="upload-date">Diupload: 15 Jan 2024</span>
+                        </div>
+                        <div class="upload-actions">
+                            <button class="btn-view">Lihat</button>
+                            <button class="btn-edit">Edit</button>
+                        </div>
+                    </div>
+                    <div class="upload-item">
+                        <div class="upload-icon">
+                            <i class="fa-solid fa-file-spreadsheet"></i>
+                        </div>
+                        <div class="upload-info">
+                            <h4>Laporan Sertifikat</h4>
+                            <p>Link: https://docs.google.com/spreadsheets/d/def456...</p>
+                            <span class="upload-date">Diupload: 12 Jan 2024</span>
+                        </div>
+                        <div class="upload-actions">
+                            <button class="btn-view">Lihat</button>
+                            <button class="btn-edit">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <nav class="footer-links">
+                <a href="menu.html">Kembali ke Menu</a>
+                <span class="dot-separator">•</span>
+                <a href="#">Bantuan</a>
+                <span class="dot-separator">•</span>
+                <a href="#">Dokumentasi</a>
+            </nav>
+        </footer>
+    </div>
+
+    <script>
+        const uploadDisplay = document.querySelector('.upload-display');
+        const uploadForms = document.getElementById('upload-forms');
+        const linkForm = document.getElementById('spreadsheet-form-link');
+        const uploadStatus = document.getElementById('upload-status');
+        const formTitle = document.getElementById('form-title');
+
+        // Show upload page based on type
+        function showUploadPage(type) {
+            uploadDisplay.style.display = 'none';
+            uploadForms.style.display = 'block';
+
+            if (type === 'link') {
+                formTitle.textContent = 'Upload Link Google Spreadsheet';
+                linkForm.style.display = 'block';
+            }
+        }
+
+        // Back to display
+        function backToDisplay() {
+            uploadForms.style.display = 'none';
+            uploadDisplay.style.display = 'block';
+            uploadStatus.style.display = 'none';
+            linkForm.style.display = 'block';
+            linkForm.reset();
+        }
+
+        // Link form submission - Fetch and parse actual Google Sheets data
+        linkForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const link = document.getElementById('spreadsheet-link').value.trim();
+            const name = document.getElementById('spreadsheet-name').value.trim();
+            const description = document.getElementById('spreadsheet-description').value.trim();
+
+            if (!link) {
+                alert('Silakan masukkan link Google Spreadsheet');
+                return;
+            }
+
+            if (!name) {
+                alert('Silakan masukkan nama spreadsheet');
+                return;
+            }
+
+            // Extract spreadsheet ID for validation
+            const spreadsheetId = extractSpreadsheetId(link);
+            if (!spreadsheetId) {
+                alert('Link Google Spreadsheet tidak valid. Pastikan link memiliki format: https://docs.google.com/spreadsheets/d/[ID_SPREADSHEET]/...');
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = linkForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Mengambil data...';
+            submitBtn.disabled = true;
+
+            try {
+                // Convert Google Sheets sharing URL to CSV export URL
+                let csvExportUrl = link;
+
+                // Handle different Google Sheets URL formats
+                if (link.includes('/edit?')) {
+                    // Standard sharing URL: /edit?usp=sharing
+                    csvExportUrl = link.replace('/edit?usp=sharing', '/export?format=csv');
+                } else if (link.includes('/edit#gid=')) {
+                    // URL with specific sheet: /edit#gid=123
+                    csvExportUrl = link.replace('/edit#gid=', '/export?format=csv&gid=');
+                } else if (link.includes('/d/') && !link.includes('/export?')) {
+                    // Basic URL format: add export parameters
+                    const spreadsheetId = extractSpreadsheetId(link);
+                    csvExportUrl = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/export?format=csv`;
+                }
+
+                console.log('Original URL:', link);
+                console.log('CSV Export URL:', csvExportUrl);
+
+                const response = await fetch(`http://localhost:5000/cors_proxy.php?url=${encodeURIComponent(csvExportUrl)}`);
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('CORS proxy error:', response.status, errorText);
+                    throw new Error(`Gagal mengambil data spreadsheet. Status: ${response.status}. Pastikan link dapat diakses secara publik.`);
+                }
+
+                const csvText = await response.text();
+                console.log('CSV data received, length:', csvText.length);
+                console.log('First 200 chars:', csvText.substring(0, 200));
+
+                if (!csvText.trim()) {
+                    throw new Error('Data spreadsheet kosong atau tidak dapat diakses');
+                }
+
+                // Parse CSV to spreadsheet data
+                const spreadsheetData = parseCSVToSpreadsheetData(csvText, name, description, link);
+
+                if (spreadsheetData.length === 0) {
+                    throw new Error('Tidak ada data yang dapat diparsing dari spreadsheet');
+                }
+
+                // Save to localStorage
+                console.log(`Saving ${spreadsheetData.length} rows of spreadsheet data to localStorage...`);
+                saveSpreadsheetData(spreadsheetData);
+
+                // Update dashboard stats
+                updateDashboardStats();
+
+                // Show success message
+                linkForm.style.display = 'none';
+                uploadStatus.style.display = 'block';
+
+                alert(`✅ Data Google Spreadsheet berhasil diambil dan disimpan!\n\nNama: ${name}\nJumlah data: ${spreadsheetData.length} baris\n\nData akan muncul di tabel "Data PBJ Terbaru" di dashboard admin.`);
+
+            } catch (error) {
+                console.error('Error fetching/parsing spreadsheet:', error);
+                alert(`❌ Terjadi kesalahan saat mengambil data spreadsheet: ${error.message}\n\nPastikan:\n1. Link spreadsheet dapat diakses secara publik\n2. Spreadsheet memiliki data yang valid\n3. Format data sesuai dengan struktur yang diharapkan`);
+            } finally {
+                // Reset button state
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+
+
+
+        // Helper function to read file as text
+        function readFileAsText(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (e) => resolve(e.target.result);
+                reader.onerror = (e) => reject(new Error('Failed to read file'));
+                reader.readAsText(file, 'UTF-8');
+            });
+        }
+
+        function clearForm() {
+            linkForm.reset();
+        }
+
+        function resetForm() {
+            uploadStatus.style.display = 'none';
+            linkForm.style.display = 'block';
+            linkForm.reset();
+        }
+
+        // Save spreadsheet to localStorage
+        function saveSpreadsheet(spreadsheet) {
+            let spreadsheets = JSON.parse(localStorage.getItem('spreadsheets')) || [];
+            spreadsheets.unshift(spreadsheet); // Add to beginning of array
+            localStorage.setItem('spreadsheets', JSON.stringify(spreadsheets));
+        }
+
+        // Update dashboard stats (shared function)
+        function updateDashboardStats() {
+            // This function will be called to update stats in admin dashboard
+            // Since we can't directly modify admin.html from here, we'll use localStorage events
+            // Trigger a storage event by updating a timestamp in localStorage
+            const timestamp = Date.now();
+            localStorage.setItem('lastSpreadsheetUpload', timestamp.toString());
+
+            // Also dispatch a custom event for same-page listeners
+            const event = new CustomEvent('spreadsheetUploaded', {
+                detail: { timestamp: timestamp }
+            });
+            window.dispatchEvent(event);
+        }
+
+        // Extract spreadsheet ID from Google Sheets URL
+        function extractSpreadsheetId(url) {
+            const match = url.match(/\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/);
+            return match ? match[1] : null;
+        }
+
+        // Parse CSV text and convert to spreadsheet data format
+        function parseCSVToSpreadsheetData(csvText, name, description, link) {
+            const lines = csvText.trim().split('\n').filter(line => line.trim()); // Remove empty lines
+            if (lines.length < 2) {
+                throw new Error('CSV must have at least a header row and one data row');
+            }
+
+            console.log('CSV parsing: Total lines after filtering:', lines.length);
+            console.log('CSV headers (first line):', lines[0]);
+            console.log('First few data lines:', lines.slice(1, 4));
+
+            // Always assume first row is headers for Google Sheets CSV export
+            const headers = parseCSVRow(lines[0]);
+            const dataRows = lines.slice(1);
+
+            console.log('Parsed headers:', headers);
+            console.log('Data rows count:', dataRows.length);
+
+            const spreadsheetData = [];
+
+            dataRows.forEach((row, index) => {
+                if (!row.trim()) return; // Skip empty rows
+
+                // Parse the data row
+                const values = parseCSVRow(row);
+                console.log(`Row ${index + 1} parsed values (${values.length} columns):`, values);
+
+                // Map columns by position (flexible column count)
+                // Accept any row with at least 3 columns, fill missing columns with defaults
+                if (values.length >= 3) {
+                    const item = {
+                        id: Date.now() + index,
+                        no: parseInt(values[0]) || (index + 1),
+                        subsaker: values[1] || '',
+                        kegiatan: values[2] || '',
+                        nomorKontrak: values[3] || '',
+                        kodeMak: values[4] || '',
+                        nilaiKontrak: values[5] || '',
+                        penyedia: values[6] || '',
+                        tanggalKontrak: values[7] || '',
+                        tglAkhirKontrak: values[8] || '',
+                        kontrak: values[9] || 'CLEAR',
+                        dokumenProses: values[10] || 'SUDAH',
+                        name: name,
+                        description: description,
+                        link: link,
+                        uploadDate: new Date().toLocaleDateString('id-ID'),
+                        uploadTime: new Date().toLocaleTimeString('id-ID'),
+                        type: 'link'
+                    };
+                    spreadsheetData.push(item);
+                    console.log(`Added item ${index + 1}:`, item);
+                } else {
+                    console.warn(`Skipping row ${index + 1} with insufficient columns:`, values.length, 'columns found, minimum 3 required, values:', values);
+                }
+            });
+
+            console.log('Final parsed data count:', spreadsheetData.length);
+            return spreadsheetData;
+        }
+
+        // More robust CSV row parsing
+        function parseCSVRow(row) {
+            const values = [];
+            let current = '';
+            let inQuotes = false;
+
+            for (let i = 0; i < row.length; i++) {
+                const char = row[i];
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                    values.push(current.replace(/"/g, '').trim());
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            values.push(current.replace(/"/g, '').trim()); // Add the last value
+
+            return values;
+        }
+
+        // Fallback CSV parsing method for edge cases
+        function parseCSVFallback(csvText, name, description, link) {
+            console.log('Using fallback CSV parsing method');
+
+            // Split by newlines and filter out empty lines
+            const lines = csvText.split('\n').filter(line => line.trim().length > 0);
+
+            if (lines.length < 2) {
+                throw new Error('Fallback parsing: CSV must have at least header and one data row');
+            }
+
+            const spreadsheetData = [];
+
+            // Skip first line (assume it's header) and process remaining lines
+            for (let i = 1; i < lines.length; i++) {
+                const line = lines[i].trim();
+                if (!line) continue;
+
+                // Simple split by comma, but handle basic quoted fields
+                const values = line.split(',').map(val => val.replace(/^"|"$/g, '').trim());
+
+                console.log(`Fallback parsing row ${i}:`, values);
+
+                // Accept rows with at least 11 columns (required for new structure)
+                if (values.length >= 11) {
+                    const item = {
+                        id: Date.now() + i,
+                        no: parseInt(values[0]) || i,
+                        subsaker: values[1] || '',
+                        kegiatan: values[2] || '',
+                        nomorKontrak: values[3] || '',
+                        kodeMak: values[4] || '',
+                        nilaiKontrak: values[5] || '',
+                        penyedia: values[6] || '',
+                        tanggalKontrak: values[7] || '',
+                        tglAkhirKontrak: values[8] || '',
+                        kontrak: values[9] || 'CLEAR',
+                        dokumenProses: values[10] || 'SUDAH',
+                        name: name,
+                        description: description,
+                        link: link,
+                        uploadDate: new Date().toLocaleDateString('id-ID'),
+                        uploadTime: new Date().toLocaleTimeString('id-ID'),
+                        type: 'link'
+                    };
+                    spreadsheetData.push(item);
+                    console.log(`Fallback added item ${i}:`, item);
+                } else {
+                    console.warn(`Fallback skipping row ${i} with insufficient columns:`, values.length);
+                }
+            }
+
+            console.log('Fallback parsing completed, data count:', spreadsheetData.length);
+            return spreadsheetData;
+        }
+
+        // Ultra-simple CSV parsing as last resort
+        function parseCSVUltraSimple(csvText, name, description, link) {
+            console.log('Using ultra-simple CSV parsing as last resort');
+
+            // Split by newlines and filter out empty lines
+            const lines = csvText.split('\n').filter(line => line.trim().length > 0);
+
+            if (lines.length < 1) {
+                throw new Error('Ultra-simple parsing: No data found in CSV');
+            }
+
+            const spreadsheetData = [];
+
+            // Process all lines (assume first line might be header or data)
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i].trim();
+                if (!line) continue;
+
+                // Ultra-simple split by comma (no quote handling)
+                const values = line.split(',').map(val => val.trim());
+
+                console.log(`Ultra-simple parsing row ${i + 1}:`, values);
+
+                // Accept any row with at least 3 columns
+                if (values.length >= 3) {
+                    const item = {
+                        id: Date.now() + i,
+                        no: parseInt(values[0]) || (i + 1),
+                        subsaker: values[1] || '',
+                        kegiatan: values[2] || '',
+                        nomorKontrak: values[3] || '',
+                        kodeMak: values[4] || '',
+                        nilaiKontrak: values[5] || '',
+                        penyedia: values[6] || '',
+                        tanggalKontrak: values[7] || '',
+                        tglAkhirKontrak: values[8] || '',
+                        kontrak: values[9] || 'CLEAR',
+                        dokumenProses: values[10] || 'SUDAH',
+                        name: name,
+                        description: description,
+                        link: link,
+                        uploadDate: new Date().toLocaleDateString('id-ID'),
+                        uploadTime: new Date().toLocaleTimeString('id-ID'),
+                        type: 'link'
+                    };
+                    spreadsheetData.push(item);
+                    console.log(`Ultra-simple added item ${i + 1}:`, item);
+                } else {
+                    console.warn(`Ultra-simple skipping row ${i + 1} with insufficient columns:`, values.length);
+                }
+            }
+
+            console.log('Ultra-simple parsing completed, data count:', spreadsheetData.length);
+            return spreadsheetData;
+        }
+
+        // Save spreadsheet data to localStorage
+        function saveSpreadsheetData(spreadsheetData) {
+            let existingData = JSON.parse(localStorage.getItem('spreadsheets')) || [];
+
+            // Add new data to the beginning
+            const updatedData = [...spreadsheetData, ...existingData];
+
+            localStorage.setItem('spreadsheets', JSON.stringify(updatedData));
+        }
+    </script>
+</body>
+</html>

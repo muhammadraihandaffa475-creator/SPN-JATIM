@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-PERWABKEU - Sistem Elektronik Perbendaharaan dan Kewenangan Keuangan</title>
+    <meta name="description" content="Sistem Elektronik Perbendaharaan dan Kewenangan Keuangan untuk pengelolaan keuangan digital POLDA JATIM">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚔</text></svg>">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <nav class="admin-sidebar">
+            <div class="sidebar-header">
+                <div class="logo-section">
+                    <img src="https://yt3.ggpht.com/a/AATXAJwDikBj_PcvGKe5caluqknHoXgqXk7I5vY1CqY9=s200-c-k-c0xffffffff-no-rj-mo" alt="Logo SPN" class="sidebar-logo">
+                    <h3>SPN POLDA JATIM</h3>
+                </div>
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li class="menu-item">
+                    <a href="menu.html">
+                        <i class="fa-solid fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="admin.html">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="rpd-2026.html">
+                        <i class="fa-solid fa-map-marked-alt"></i>
+                        <span>RPD 2026</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="lra-2026.html">
+                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                        <span>LRA 2026</span>
+                    </a>
+                </li>
+                <li class="menu-item active">
+                    <a href="eperwabkeu.html">
+                        <i class="fa-solid fa-coins"></i>
+                        <span>E-PERWABKEU</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="spreadsheet.html">
+                        <i class="fa-solid fa-file-spreadsheet"></i>
+                        <span>Google Spreadsheet</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name">User E-PERWABKEU</span>
+                        <span class="user-role">Financial Admin</span>
+                    </div>
+                </div>
+                <button class="logout-btn" onclick="window.location.href='menu.html'">
+                    <i class="fa-solid fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="header-left">
+                    <button class="sidebar-toggle-btn" id="sidebarToggleBtn">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div class="breadcrumb">
+                        <span class="breadcrumb-item">Dashboard</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                        <span class="breadcrumb-item active">E-PERWABKEU</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="header-date">
+                        <i class="fa-solid fa-calendar"></i>
+                        <span id="currentDate"></span>
+                    </div>
+                    <div class="header-actions">
+                        <button class="header-action-btn theme-toggle" id="theme-toggle">
+                            <i class="fa-solid fa-moon"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <section class="dashboard-content">
+                <!-- Welcome Section -->
+                <section class="welcome-section">
+                    <div class="welcome-content">
+                        <h1>E-PERWABKEU</h1>
+                        <p>Sistem Elektronik Perbendaharaan dan Kewenangan Keuangan untuk pengelolaan keuangan digital</p>
+                    </div>
+                    <div class="welcome-stats">
+                        <div class="welcome-stat">
+                            <i class="fa-solid fa-wallet"></i>
+                            <span>Anggaran: Rp 2.5T</span>
+                        </div>
+                        <div class="welcome-stat">
+                            <i class="fa-solid fa-chart-pie"></i>
+                            <span>Realisasi: 78.5%</span>
+                        </div>
+                        <div class="welcome-stat">
+                            <i class="fa-solid fa-clock"></i>
+                            <span>Status: Aktif</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Financial Overview Cards -->
+                <section class="eperwabkeu-overview">
+                    <div class="overview-grid">
+                        <div class="overview-card">
+                            <div class="card-header">
+                                <i class="fa-solid fa-money-bill-wave"></i>
+                                <h3>Anggaran Tahunan</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="amount">Rp 2,500,000,000,000</div>
+                                <div class="change positive">+12.5% dari tahun lalu</div>
+                            </div>
+                        </div>
+
+                        <div class="overview-card">
+                            <div class="card-header">
+                                <i class="fa-solid fa-hand-holding-dollar"></i>
+                                <h3>Realisasi Anggaran</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="amount">Rp 1,962,500,000,000</div>
+                                <div class="change positive">78.5% terealisasi</div>
+                            </div>
+                        </div>
+
+                        <div class="overview-card">
+                            <div class="card-header">
+                                <i class="fa-solid fa-piggy-bank"></i>
+                                <h3>Sisa Anggaran</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="amount">Rp 537,500,000,000</div>
+                                <div class="change neutral">21.5% tersisa</div>
+                            </div>
+                        </div>
+
+                        <div class="overview-card">
+                            <div class="card-header">
+                                <i class="fa-solid fa-file-invoice-dollar"></i>
+                                <h3>Jumlah Kontrak</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="amount">1,247</div>
+                                <div class="change positive">+15% bulan ini</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Financial Management Sections -->
+                <section class="eperwabkeu-sections">
+                    <div class="sections-grid">
+                        <div class="section-card">
+                            <div class="section-header">
+                                <i class="fa-solid fa-coins"></i>
+                                <h3>Manajemen Anggaran</h3>
+                            </div>
+                            <div class="section-content">
+                                <p>Kelola anggaran, realisasi, dan monitoring keuangan secara digital</p>
+                                <div class="section-actions">
+                                    <button class="btn-primary">Kelola Anggaran</button>
+                                    <button class="btn-secondary">Laporan Keuangan</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="section-card">
+                            <div class="section-header">
+                                <i class="fa-solid fa-file-contract"></i>
+                                <h3>Pengelolaan Kontrak</h3>
+                            </div>
+                            <div class="section-content">
+                                <p>Sistem terintegrasi untuk manajemen kontrak dan dokumen keuangan</p>
+                                <div class="section-actions">
+                                    <button class="btn-primary">Daftar Kontrak</button>
+                                    <button class="btn-secondary">Monitoring Kontrak</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="section-card">
+                            <div class="section-header">
+                                <i class="fa-solid fa-chart-bar"></i>
+                                <h3>Reporting & Analytics</h3>
+                            </div>
+                            <div class="section-content">
+                                <p>Analisis keuangan real-time dan pelaporan otomatis</p>
+                                <div class="section-actions">
+                                    <button class="btn-primary">Generate Laporan</button>
+                                    <button class="btn-secondary">Dashboard Analytics</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="section-card">
+                            <div class="section-header">
+                                <i class="fa-solid fa-shield-alt"></i>
+                                <h3>Kontrol & Audit</h3>
+                            </div>
+                            <div class="section-content">
+                                <p>Sistem audit trail dan kontrol keuangan untuk transparansi</p>
+                                <div class="section-actions">
+                                    <button class="btn-primary">Audit Trail</button>
+                                    <button class="btn-secondary">Kontrol Akses</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Recent Financial Activities -->
+                <section class="recent-activities">
+                    <div class="overview-card">
+                        <div class="overview-header">
+                            <h3>Aktivitas Keuangan Terbaru</h3>
+                        </div>
+                        <div class="activities-list">
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fa-solid fa-plus-circle"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>Kontrak Baru Disetujui</h4>
+                                    <p>Pengadaan Kendaraan Operasional - Rp 2.5M</p>
+                                    <span class="activity-time">2 jam yang lalu</span>
+                                </div>
+                            </div>
+
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fa-solid fa-check-circle"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>Pembayaran Realisasi</h4>
+                                    <p>Kontrak Renovasi Gedung A - Rp 150M</p>
+                                    <span class="activity-time">5 jam yang lalu</span>
+                                </div>
+                            </div>
+
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fa-solid fa-file-alt"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>Laporan Keuangan Dibuat</h4>
+                                    <p>Laporan Bulanan November 2024</p>
+                                    <span class="activity-time">1 hari yang lalu</span>
+                                </div>
+                            </div>
+
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fa-solid fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>Review Kontrak Diperlukan</h4>
+                                    <p>Kontrak IT Infrastructure - Deadline 3 hari</p>
+                                    <span class="activity-time">2 hari yang lalu</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Update current date
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentDateElement = document.getElementById('currentDate');
+            if (currentDateElement) {
+                const now = new Date();
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                currentDateElement.textContent = now.toLocaleDateString('id-ID', options);
+            }
+
+            // Sidebar toggle functionality
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
+            const adminContainer = document.querySelector('.admin-container');
+
+            function toggleSidebar() {
+                adminContainer.classList.toggle('sidebar-collapsed');
+            }
+
+            if (sidebarToggle) sidebarToggle.addEventListener('click', toggleSidebar);
+            if (sidebarToggleBtn) sidebarToggle.addEventListener('click', toggleSidebar);
+
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            const html = document.documentElement;
+
+            // Load saved theme
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                html.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            }
+
+            themeToggle.addEventListener('click', function() {
+                const currentTheme = html.getAttribute('data-theme');
+                if (currentTheme === 'dark') {
+                    html.removeAttribute('data-theme');
+                    localStorage.setItem('theme', 'light');
+                    themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+                } else {
+                    html.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                    themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

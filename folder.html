@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Folder - SPN POLDA JATIM</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+    <div class="admin-container" role="application">
+        <!-- Sidebar -->
+        <nav class="admin-sidebar" role="navigation" aria-label="Sidebar Menu">
+            <div class="sidebar-header">
+                <div class="logo-section">
+                    <img src="https://yt3.ggpht.com/a/AATXAJwDikBj_PcvGKe5caluqknHoXgqXk7I5vY1CqY9=s200-c-k-c0xffffffff-no-rj-mo" alt="Logo SPN" class="sidebar-logo" loading="lazy" />
+                    <h3>SPN POLDA JATIM</h3>
+                </div>
+                <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle Sidebar" aria-expanded="true" aria-controls="sidebarMenu" type="button">
+                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <ul class="sidebar-menu" id="sidebarMenu">
+                <li class="menu-item">
+                    <a href="menu.html" tabindex="0">
+                        <i class="fa-solid fa-home" aria-hidden="true"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="admin.html" tabindex="0">
+                        <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="admin.html" tabindex="0">
+                        <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="spreadsheet.html" tabindex="0">
+                        <i class="fa-solid fa-file-spreadsheet" aria-hidden="true"></i>
+                        <span>Spreadsheet</span>
+                    </a>
+                </li>
+                <li class="menu-item active">
+                    <a href="#folders" tabindex="0" aria-current="page">
+                        <i class="fa-solid fa-folder" aria-hidden="true"></i>
+                        <span>Folders</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#reports" tabindex="0">
+                        <i class="fa-solid fa-chart-bar" aria-hidden="true"></i>
+                        <span>Laporan</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer" role="contentinfo">
+                <div class="user-profile">
+                    <div class="user-avatar" aria-hidden="true">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name">User Folder</span>
+                        <span class="user-role">Viewer</span>
+                    </div>
+                </div>
+                <button class="logout-btn" onclick="window.location.href='menu.html'" aria-label="Logout" type="button">
+                    <i class="fa-solid fa-sign-out-alt" aria-hidden="true"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header" role="banner">
+                <div class="header-left">
+                    <button class="sidebar-toggle-btn" id="sidebarToggleBtn" type="button">
+                        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                    </button>
+                    <div class="breadcrumb" aria-label="Breadcrumb">
+                        <span class="breadcrumb-item">Dashboard</span>
+                        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                        <span class="breadcrumb-item active">Folders</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="header-notifications">
+                        <button class="notification-btn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false" type="button">
+                            <i class="fa-solid fa-bell" aria-hidden="true"></i>
+                            <span class="notification-badge" aria-live="polite" aria-atomic="true">3</span>
+                        </button>
+                    </div>
+                    <div class="header-date" aria-live="polite" aria-atomic="true" aria-label="Current date">
+                        <span id="currentDate"></span>
+                    </div>
+                    <div class="header-actions">
+                        <button class="header-action-btn theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode" type="button">
+                            <i class="fa-solid fa-moon" aria-hidden="true"></i>
+                        </button>
+                        <button class="header-action-btn" aria-label="Settings" type="button">
+                            <i class="fa-solid fa-asterisk" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <section class="dashboard-content" aria-label="Folder Content">
+                <!-- Welcome Section -->
+                <section class="welcome-section" aria-labelledby="folderTitle">
+                    <div class="welcome-content">
+                        <h1 id="folder-title">Folder Management</h1>
+                        <p id="folder-info">Kelola dan akses folder-file dalam sistem SPN POLDA JATIM</p>
+                    </div>
+                    <div class="welcome-stats" role="list">
+                        <div class="welcome-stat" role="listitem">
+                            <i class="fa-solid fa-folder" aria-hidden="true"></i>
+                            <span>Total Folders: <strong id="totalFolders">0</strong></span>
+                        </div>
+                        <div class="welcome-stat" role="listitem">
+                            <i class="fa-solid fa-file" aria-hidden="true"></i>
+                            <span>Total Files: <strong id="totalFiles">0</strong></span>
+                        </div>
+                        <div class="welcome-stat" role="listitem">
+                            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+                            <span>Last Updated: <strong id="lastUpdated">Never</strong></span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="spreadsheet-section">
+                    <div class="folder-details">
+                        <div class="folder-header">
+                            <i class="fa-solid fa-folder-open"></i>
+                            <div class="folder-meta">
+                                <h2 id="folder-name">Folder Name</h2>
+                                <p id="folder-stats">0 files | Dibuat: -</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="folder-contents">
+                        <div id="no-files-message" class="no-files-message" style="display: none;">
+                            <p>Folder ini kosong. Belum ada file yang diupload ke folder ini.</p>
+                        </div>
+                        <div id="folder-files-list" class="uploads-list">
+                            <!-- Files in this folder will be displayed here -->
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <nav class="footer-links">
+            <a href="upload.html">Kembali ke Upload File</a>
+            <span class="dot-separator">•</span>
+            <a href="menu.html">Kembali ke Menu Utama</a>
+        </nav>
+    </footer>
+
+        <!-- File Viewer Modal -->
+        <div id="file-viewer-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modal-title">File Viewer</h3>
+                    <button class="modal-close" onclick="closeFileViewer()">&times;</button>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <!-- File content will be displayed here -->
+                </div>
+            </div>
+        </div>
+
+    <script>
+        let currentFolderId = null;
+
+        // Get folder ID from URL parameters
+        function getFolderIdFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id');
+        }
+
+        // Load folder data and files
+        function loadFolderData() {
+            currentFolderId = getFolderIdFromURL();
+            if (!currentFolderId) {
+                alert('Folder ID tidak ditemukan');
+                window.location.href = 'upload.html';
+                return;
+            }
+
+            const folders = JSON.parse(localStorage.getItem('folders')) || [];
+            const folder = folders.find(f => f.id == currentFolderId);
+
+            if (!folder) {
+                alert('Folder tidak ditemukan');
+                window.location.href = 'upload.html';
+                return;
+            }
+
+            // Update page title and info
+            document.getElementById('folder-title').textContent = folder.name;
+            document.getElementById('folder-name').textContent = folder.name;
+            document.getElementById('folder-info').textContent = `SPN POLDA JATIM - ${folder.name}`;
+
+            // Load files in this folder
+            loadFolderFiles(folder);
+        }
+
+        function loadFolderFiles(folder) {
+            const uploadedFiles = JSON.parse(localStorage.getItem('uploadedFiles')) || [];
+            const folderFiles = uploadedFiles.filter(file => file.folder == folder.id);
+
+            document.getElementById('folder-stats').textContent = `${folderFiles.length} file${folderFiles.length !== 1 ? 's' : ''} | Dibuat: ${folder.createdDate}`;
+
+            const filesList = document.getElementById('folder-files-list');
+            const noFilesMessage = document.getElementById('no-files-message');
+
+            if (folderFiles.length === 0) {
+                noFilesMessage.style.display = 'block';
+                filesList.innerHTML = '';
+                return;
+            }
+
+            noFilesMessage.style.display = 'none';
+            filesList.innerHTML = '';
+
+            folderFiles.forEach(file => {
+                const fileItem = createFileItem(file);
+                filesList.appendChild(fileItem);
+            });
+        }
+
+        function createFileItem(file) {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'upload-item';
+            itemDiv.innerHTML = `
+                <div class="upload-icon">
+                    <i class="fa-solid fa-file-${getFileIcon(file.type)}"></i>
+                </div>
+                <div class="upload-info">
+                    <h4>${file.name}</h4>
+                    <p>Jenis: ${getTypeLabel(file.type)} | Nomor: ${file.number || 'N/A'}</p>
+                    <span class="upload-date">Diupload: ${file.uploadDate} | Ukuran: ${file.fileSize}</span>
+                </div>
+                <div class="upload-actions">
+                    <button class="btn-view" onclick="viewFile(${file.id})">Lihat Isi</button>
+                    <button class="btn-delete" onclick="deleteFile(${file.id})">Hapus</button>
+                </div>
+            `;
+            return itemDiv;
+        }
+
+        function getFileIcon(type) {
+            switch(type) {
+                case 'pdf': return 'pdf';
+                case 'word': return 'word';
+                case 'excel': return 'excel';
+                default: return 'file';
+            }
+        }
+
+        function getTypeLabel(type) {
+            switch(type) {
+                case 'pdf': return 'PDF';
+                case 'word': return 'Word';
+                case 'excel': return 'Excel';
+                default: return type;
+            }
+        }
+
+        function viewFile(id) {
+            const uploadedFiles = JSON.parse(localStorage.getItem('uploadedFiles')) || [];
+            const file = uploadedFiles.find(f => f.id === id);
+            if (file && file.fileContent) {
+                // Show modal with file content
+                const modal = document.getElementById('file-viewer-modal');
+                const modalTitle = document.getElementById('modal-title');
+                const modalBody = document.getElementById('modal-body');
+
+                modalTitle.textContent = file.name;
+
+                if (file.mimeType.startsWith('image/')) {
+                    // Display image
+                    modalBody.innerHTML = `
+                        <div style="text-align: center;">
+                            <img src="${file.fileContent}" alt="${file.name}" style="max-width: 100%; max-height: 70vh; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
+                            <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px; text-align: left;">
+                                <p><strong>Jenis:</strong> ${getTypeLabel(file.type)}</p>
+                                <p><strong>Nomor:</strong> ${file.number || 'N/A'}</p>
+                                <p><strong>Tanggal Terbit:</strong> ${file.issueDate || 'N/A'}</p>
+                                <p><strong>Tanggal Kadaluarsa:</strong> ${file.expiryDate || 'N/A'}</p>
+                                <p><strong>Ukuran:</strong> ${file.fileSize}</p>
+                                <p><strong>Diupload:</strong> ${file.uploadDate}</p>
+                                ${file.description ? `<p><strong>Deskripsi:</strong> ${file.description}</p>` : ''}
+                            </div>
+                        </div>
+                    `;
+                } else if (file.mimeType === 'application/pdf') {
+                    // Display PDF in iframe
+                    modalBody.innerHTML = `
+                        <div style="height: 70vh;">
+                            <iframe src="${file.fileContent}" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+                        </div>
+                        <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px; text-align: left;">
+                            <p><strong>Jenis:</strong> ${getTypeLabel(file.type)}</p>
+                            <p><strong>Nomor:</strong> ${file.number || 'N/A'}</p>
+                            <p><strong>Tanggal Terbit:</strong> ${file.issueDate || 'N/A'}</p>
+                            <p><strong>Tanggal Kadaluarsa:</strong> ${file.expiryDate || 'N/A'}</p>
+                            <p><strong>Ukuran:</strong> ${file.fileSize}</p>
+                            <p><strong>Diupload:</strong> ${file.uploadDate}</p>
+                            ${file.description ? `<p><strong>Deskripsi:</strong> ${file.description}</p>` : ''}
+                        </div>
+                    `;
+                } else {
+                    // For other file types, show download option
+                    modalBody.innerHTML = `
+                        <div style="text-align: center;">
+                            <div style="font-size: 48px; color: #8B4513; margin-bottom: 20px;">
+                                <i class="fa-solid fa-file-${getFileIcon(file.type)}"></i>
+                            </div>
+                            <p style="font-size: 18px; margin-bottom: 20px;">File ini tidak dapat ditampilkan langsung di browser.</p>
+                            <a href="${file.fileContent}" download="${file.name}" style="background: #007bff; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block; margin-bottom: 20px;">Download File</a>
+                            <div style="padding: 15px; background: #f8f9fa; border-radius: 8px; text-align: left;">
+                                <p><strong>Jenis:</strong> ${getTypeLabel(file.type)}</p>
+                                <p><strong>Nomor:</strong> ${file.number || 'N/A'}</p>
+                                <p><strong>Tanggal Terbit:</strong> ${file.issueDate || 'N/A'}</p>
+                                <p><strong>Tanggal Kadaluarsa:</strong> ${file.expiryDate || 'N/A'}</p>
+                                <p><strong>Ukuran:</strong> ${file.fileSize}</p>
+                                <p><strong>Diupload:</strong> ${file.uploadDate}</p>
+                                ${file.description ? `<p><strong>Deskripsi:</strong> ${file.description}</p>` : ''}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                modal.style.display = 'flex';
+            } else {
+                alert('File tidak ditemukan atau belum diupload dengan benar.');
+            }
+        }
+
+        function deleteFile(id) {
+            if (confirm('Apakah Anda yakin ingin menghapus file ini?')) {
+                let uploadedFiles = JSON.parse(localStorage.getItem('uploadedFiles')) || [];
+                uploadedFiles = uploadedFiles.filter(f => f.id !== id);
+                localStorage.setItem('uploadedFiles', JSON.stringify(uploadedFiles));
+                loadFolderData(); // Refresh the folder view
+            }
+        }
+
+        function closeFileViewer() {
+            const modal = document.getElementById('file-viewer-modal');
+            modal.style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('file-viewer-modal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Load folder data when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFolderData();
+            updateCurrentDate();
+            setupSidebarToggle();
+            setupThemeToggle();
+        });
+
+        // Update current date
+        function updateCurrentDate() {
+            const currentDateElement = document.getElementById('currentDate');
+            if (currentDateElement) {
+                const now = new Date();
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                currentDateElement.textContent = now.toLocaleDateString('id-ID', options);
+            }
+        }
+
+        // Sidebar Toggle Functionality
+        function setupSidebarToggle() {
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
+            const adminContainer = document.querySelector('.admin-container');
+
+            function toggleSidebar() {
+                adminContainer.classList.toggle('sidebar-collapsed');
+                const isCollapsed = adminContainer.classList.contains('sidebar-collapsed');
+                if (sidebarToggle) sidebarToggle.setAttribute('aria-expanded', !isCollapsed);
+            }
+
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener('click', toggleSidebar);
+            }
+            if (sidebarToggleBtn && sidebarToggleBtn !== sidebarToggle) {
+                sidebarToggleBtn.addEventListener('click', toggleSidebar);
+            }
+        }
+
+        // Theme Toggle Functionality
+        function setupThemeToggle() {
+            const themeToggle = document.getElementById('theme-toggle');
+            const html = document.documentElement;
+
+            // Load saved theme
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                html.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            }
+
+            themeToggle.addEventListener('click', function() {
+                const currentTheme = html.getAttribute('data-theme');
+                if (currentTheme === 'dark') {
+                    html.removeAttribute('data-theme');
+                    themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    html.setAttribute('data-theme', 'dark');
+                    themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

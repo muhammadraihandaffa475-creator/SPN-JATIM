@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login - SPN POLDA JATIM</title>
+    <meta name="description" content="Login ke Sistem Pengadaan Nasional POLDA JATIM" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚔</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-icons">
+                <button class="icon-btn" aria-label="Back to Home" onclick="window.location.href='menu.html'">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <button class="icon-btn theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+            <div class="profile-info">
+                <div class="logo-circle">
+                    <img src="https://yt3.ggpht.com/a/AATXAJwDikBj_PcvGKe5caluqknHoXgqXk7I5vY1CqY9=s900-c-k-c0xffffffff-no-rj-mo" alt="Logo Logistik Polda Jatim" class="logo">
+                </div>
+                <h1>Login SPN POLDA JATIM</h1>
+                <p>Sistem Pengadaan Nasional POLDA JATIM</p>
+            </div>
+        </header>
+
+        <main class="login-section">
+            <div class="login-form-container">
+                <div class="login-form-wrapper">
+                    <div class="login-header">
+                        <i class="fa-solid fa-shield-alt"></i>
+                        <h2>Masuk ke Sistem</h2>
+                        <p>Masukkan kredensial Anda untuk melanjutkan</p>
+                    </div>
+
+                    <form id="login-form" class="login-form" novalidate>
+                        <div class="form-group">
+                            <label for="username">
+                                <i class="fa-solid fa-user"></i>
+                                Username
+                            </label>
+                            <input type="text" id="username" name="username" required placeholder="Masukkan username" autocomplete="username" aria-describedby="usernameHelp">
+                            <small id="usernameHelp" class="form-help">Gunakan username yang telah terdaftar</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">
+                                <i class="fa-solid fa-lock"></i>
+                                Password
+                            </label>
+                            <div class="password-input-container">
+                                <input type="password" id="password" name="password" required placeholder="Masukkan password" autocomplete="current-password" aria-describedby="passwordHelp">
+                                <button type="button" class="password-toggle" id="password-toggle" aria-label="Toggle password visibility">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                            <small id="passwordHelp" class="form-help">Minimal 6 karakter</small>
+                        </div>
+
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="remember-me" name="remember-me">
+                                <span class="checkmark"></span>
+                                Ingat saya
+                            </label>
+                            <a href="#" class="forgot-password">Lupa password?</a>
+                        </div>
+
+                        <button type="submit" class="btn-primary login-btn">
+                            <i class="fa-solid fa-sign-in-alt"></i>
+                            Masuk
+                        </button>
+                    </form>
+
+                    <div id="login-message" class="login-message" style="display: none;"></div>
+
+                    <div class="login-footer">
+                        <p>Belum punya akun? <a href="register.html" class="register-link">Daftar sekarang</a></p>
+                        <div class="divider">
+                            <span>atau</span>
+                        </div>
+                        <div class="demo-accounts">
+                            <p><strong>Akun Demo:</strong></p>
+                            <div class="demo-account">
+                                <strong>Admin:</strong> admin / admin123
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <nav class="footer-links">
+                <a href="menu.html">Kembali ke Beranda</a>
+                <span class="dot-separator">•</span>
+                <a href="#">Bantuan</a>
+                <span class="dot-separator">•</span>
+                <a href="#">Kontak</a>
+            </nav>
+        </footer>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const currentTheme = localStorage.getItem('theme') || 'light';
+
+        if (currentTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            }
+        });
+
+        // Password toggle functionality
+        const passwordToggle = document.getElementById('password-toggle');
+        const passwordInput = document.getElementById('password');
+
+        passwordToggle.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            passwordToggle.innerHTML = type === 'password' ?
+                '<i class="fa-solid fa-eye"></i>' :
+                '<i class="fa-solid fa-eye-slash"></i>';
+        });
+
+        // Form validation and submission
+        const form = document.getElementById('login-form');
+        const messageDiv = document.getElementById('login-message');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const rememberMe = document.getElementById('remember-me').checked;
+
+            // Show loading state
+            const submitBtn = form.querySelector('.login-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sedang Masuk...';
+            submitBtn.disabled = true;
+
+            // Simple authentication (in a real app, this would be server-side)
+            setTimeout(() => {
+                if (username === 'admin' && password === 'admin123') {
+                    // Successful login
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('username', username);
+
+                    if (rememberMe) {
+                        localStorage.setItem('rememberMe', 'true');
+                    }
+
+                    messageDiv.style.display = 'block';
+                    messageDiv.className = 'login-message success';
+                    messageDiv.innerHTML = '<i class="fa-solid fa-check-circle"></i> Login berhasil! Mengalihkan...';
+
+                    setTimeout(() => {
+                        window.location.href = 'menu.html';
+                    }, 1500);
+                } else {
+                    // Failed login
+                    messageDiv.style.display = 'block';
+                    messageDiv.className = 'login-message error';
+                    messageDiv.innerHTML = '<i class="fa-solid fa-exclamation-triangle"></i> Username atau password salah!';
+
+                    // Reset form
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }
+            }, 1000);
+        });
+
+        // Check if user is already logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (isLoggedIn === 'true') {
+                // User is already logged in, redirect to admin
+                window.location.href = 'admin.html';
+            }
+
+            // Auto-fill remember me
+            const rememberMe = localStorage.getItem('rememberMe');
+            const username = localStorage.getItem('username');
+            if (rememberMe === 'true' && username) {
+                document.getElementById('username').value = username;
+                document.getElementById('remember-me').checked = true;
+            }
+        });
+
+        // Forgot password functionality
+        document.querySelector('.forgot-password').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Fitur lupa password akan segera hadir. Silakan hubungi administrator.');
+        });
+
+    </script>
+</body>
+</html>
